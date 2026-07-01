@@ -1,0 +1,117 @@
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+Project Name:       FormCraft (Working Title)
+Target Market:      Cyber Cafe & Stationery Shop Owners (Initial Niche) -> General Multi-Tool Platform (Long-term)
+Architecture:       Local-First Desktop App (Tauri + Rust + Frontend Framework)
+Document Version:   1.1
+Date:               July 2026
+
+================================================================================
+1. EXECUTIVE SUMMARY & VALUE PROPOSITION
+================================================================================
+FormCraft is a hyper-fast, modular, local-first desktop application designed 
+initially for cyber cafe and stationery shop operators who assist customers 
+with online form submissions (e.g., government jobs, college admissions, portals 
+like SSC, UPSC, Aadhaar, Passport).
+
+Long-term, the app is engineered to scale horizontally into a universal, multi-persona 
+Swiss Army Knife desktop utility ecosystem serving developers, office workers, and 
+creatives through a unified, high-performance interface.
+
+Key Value Pillars:
+- Instant & Lightweight: Built on Tauri/Rust to run beautifully on legacy shop PCs.
+- One-Click Presets: Replaces manual sizing with instant standard government limits.
+- Modular Foundation: Designed with a plug-and-play middleware engine for endless extension.
+
+================================================================================
+2. THE COMPETITIVE LANDSCAPE & PRODUCT CRITIQUE
+================================================================================
+Existing Tools:
+- DevToys / DevUtils / PowerToys: Highly powerful but built specifically for 
+  developers and technical users. They lack workflow automation for retail print 
+  and application scenarios.
+- Online Image Converters: Free, but plagued by malware, slow upload/download 
+  latencies, and data privacy vulnerabilities.
+
+Product Critique & Mitigations:
+- High Friction to Install: Users must download an executable. 
+  -> Mitigation: Keep the initial download under 15MB using Tauri. Ensure easy 
+     portable installation without complex setup wizards.
+- Resource Constraints: Target users run older hardware (Intel Core i3 4th-8th Gen, 
+  4GB-8GB RAM, integrated graphics).
+  -> Mitigation: Decouple heavy AI elements (like background removal) into cloud-fallback 
+     strategies. All math-heavy matrix modifications (resizing, scaling, stitching) 
+     are executed in raw compiled Rust performance bands.
+
+================================================================================
+3. SYSTEM ARCHITECTURE & TECHNICAL FRAMEWORK
+================================================================================
+The application utilizes a decoupled, data-driven framework.
+
+A. UI Layer (Frontend)
+- Tech Stack: HTML/CSS/JS (Lightweight framework like Svelte or Vue recommended).
+- Footprint: Runs inside the OS's native lightweight webview via Tauri. Avoids 
+  Chromium background memory overhead.
+- Interface Navigation: Built around a Category-Based Workspace Sidebar and a global 
+  Command Palette (`Ctrl + K` / `Cmd + K`) for instant tool traversal.
+
+B. Core Engine (Backend)
+- Tech Stack: Rust.
+- Execution Protocol: Pipeline Chaining Architecture. Tools are independent, isolated 
+  functions that take a strict JSON configuration payload and a raw byte buffer, 
+  returning a modified buffer.
+- In-Memory Processing: Images are read as streams and processed directly in RAM via 
+  efficient crates (like `image` or `turbojpeg`), skipping intermediate slow disk writes.
+
+C. Future Extensibility Map
+- AI Intent Routing: The unified serialization schema allows a small cloud or local 
+  LLM to map natural language to a JSON tool instruction array (e.g., `[{"tool_id": "convert", "format": "jpg"}, {"tool_id": "resize", "max_kb": 20}]`).
+- Cloud-Fallback Integration: Heavily intensive operations inherit from a generic 
+  interface (`IProcessor`), enabling automatic swapping between local compute or API requests 
+  based on machine performance metrics or internet connectivity toggles.
+- Dynamic On-Demand Loading: Built with a plugin paradigm where heavy modules 
+  (e.g., local OCR, specialized audio codecs) can be added as downloadable add-ons 
+  to keep the primary installation light.
+
+================================================================================
+4. CORE FEATURE ROADMAP (PHASE 1 IMPLEMENTATION)
+================================================================================
+
+[MODULE 1: ONE-CLICK FORM PRESETS]
+The primary landing dashboard. Users drag a file and click a single preset button.
+- "Passport Photo Upload": Auto-converts to JPG, downsizes to strictly <50KB.
+- "Signature Upload": Compresses image to strictly <20KB.
+- "Government ID/Document": Scales and compresses target PDF/Image to strictly <200KB.
+
+[MODULE 2: CORE IMAGE PIPELINE UTILITIES]
+- Image Resizer & Capper: Scales down dimensions while maintaining aspect ratio, adjusting 
+  JPEG quality factors iteratively until the final file layout fits exactly under a given 
+  kilobyte threshold.
+- Image Cropper & Format Converter: Fast rotation, freeform/aspect ratio cropping, and 
+  lossless/lossy format conversion (PNG, JPG, WEBP).
+- Ink-Saver / Contrast Booster: Tailored for signature captures. Applies a structural high-pass 
+  thresholding filter to strip away grey shadows and smartphone lighting distortions, leaving 
+  pure black ink lines on a 100% flat white canvas. Saves printer toner and clears portal checks.
+- Smart ID Stitcher: Allows rapid side-by-side or stacked merging of separate front and back 
+  scans of cards (Aadhaar, Voter ID, PAN) onto a single exportable sheet.
+
+[MODULE 3: PDF HANDLING UTILITIES]
+- Images-to-PDF Studio: Drag multiple image documents, rearrange structural order using visual 
+  thumbnails, and join them instantly into a single multi-page PDF.
+- PDF Compressor: Re-encodes embedded image resources inside bloated PDF files to force strict 
+  total file sizes for server upload windows.
+- Split & Merge Tool: Clean utility to isolate individual pages or group multi-page documents.
+
+[MODULE 4: SYSTEM UTILITIES]
+- Clipboard Text Sanitizer: Dedicated interface utility that monitors copied clipboard strings, 
+  stripping accidental spaces, replacing broken line wraps from messy PDFs, and transforming 
+  strings to clean title casings for error-free form inputs.
+
+================================================================================
+5. NON-FUNCTIONAL REQUIREMENTS & PERFORMANCE TARGETS
+================================================================================
+- Startup Latency: Cold start to usable interface state in less than 1.5 seconds.
+- Memory Footprint: Idle memory usage must remain below 100MB RAM.
+- Operating System Support: Native binary availability for Windows 10/11 (x64) and macOS.
+- Local Isolation: 100% of Phase 1 modules must process fully without active internet 
+  connectivity, handling high-resolution image uploads cleanly with local device threads.

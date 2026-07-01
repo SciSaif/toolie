@@ -1,0 +1,114 @@
+{
+  "categories": [
+    {
+      "id": "presets",
+      "name": "Form Presets",
+      "description": "One-click presets for government form uploads"
+    },
+    {
+      "id": "image",
+      "name": "Image Tools",
+      "description": "Resize, crop, convert, and enhance images"
+    },
+    {
+      "id": "pdf",
+      "name": "PDF Tools",
+      "description": "Create, compress, split, and merge PDFs"
+    },
+    {
+      "id": "system",
+      "name": "System Utilities",
+      "description": "Clipboard and text helpers"
+    }
+  ],
+  "tools": [
+    {
+      "id": "passport-photo",
+      "name": "Passport Photo Upload",
+      "description": "Auto-converts to JPG and compresses to under 50KB for passport portals.",
+      "category": "presets",
+      "keywords": ["passport", "photo", "jpg", "50kb", "government", "upload"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "signature-upload",
+      "name": "Signature Upload",
+      "description": "Compresses signature images to strictly under 20KB.",
+      "category": "presets",
+      "keywords": ["signature", "sign", "20kb", "ink", "upload"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "gov-id-document",
+      "name": "Government ID / Document",
+      "description": "Scales and compresses ID scans or documents to under 200KB.",
+      "category": "presets",
+      "keywords": ["aadhaar", "id", "document", "200kb", "government", "scan"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "image-resizer",
+      "name": "Image Resizer & Capper",
+      "description": "Scale dimensions and iteratively compress until a target file size is met.",
+      "category": "image",
+      "keywords": ["resize", "compress", "kb", "dimensions", "scale"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "image-cropper",
+      "name": "Image Cropper & Format Converter",
+      "description": "Rotate, crop with aspect ratios, and convert between PNG, JPG, and WEBP.",
+      "category": "image",
+      "keywords": ["crop", "rotate", "convert", "png", "jpg", "webp", "format"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "ink-saver",
+      "name": "Ink-Saver / Contrast Booster",
+      "description": "Clean signature captures with high-contrast black ink on a white background.",
+      "category": "image",
+      "keywords": ["signature", "ink", "contrast", "threshold", "scanner"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "id-stitcher",
+      "name": "Smart ID Stitcher",
+      "description": "Merge front and back ID scans side-by-side or stacked on one sheet.",
+      "category": "image",
+      "keywords": ["aadhaar", "pan", "voter", "stitch", "merge", "id", "card"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "images-to-pdf",
+      "name": "Images-to-PDF Studio",
+      "description": "Arrange image thumbnails and export them as a multi-page PDF.",
+      "category": "pdf",
+      "keywords": ["pdf", "images", "merge", "pages", "document"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "pdf-compressor",
+      "name": "PDF Compressor",
+      "description": "Re-encode embedded images in PDFs to hit strict upload size limits.",
+      "category": "pdf",
+      "keywords": ["pdf", "compress", "size", "upload", "optimize"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "pdf-split-merge",
+      "name": "Split & Merge PDF",
+      "description": "Extract individual pages or combine multiple PDFs into one file.",
+      "category": "pdf",
+      "keywords": ["pdf", "split", "merge", "pages", "extract"],
+      "status": "coming-soon"
+    },
+    {
+      "id": "clipboard-sanitizer",
+      "name": "Clipboard Text Sanitizer",
+      "description": "Clean copied text by trimming spaces, fixing line wraps, and normalizing casing.",
+      "category": "system",
+      "keywords": ["clipboard", "text", "clean", "paste", "format", "sanitize"],
+      "status": "coming-soon"
+    }
+  ]
+}
