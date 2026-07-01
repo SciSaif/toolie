@@ -94,8 +94,25 @@ export function fileToBase64(file: File): Promise<string> {
 
 export function base64ToBlob(base64: string, mimeType: string): Blob {
   const binary = atob(base64);
-  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  const length = binary.length;
+  const bytes = new Uint8Array(length);
+
+  for (let index = 0; index < length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+
   return new Blob([bytes], { type: mimeType });
+}
+
+/**
+ * Yields control back to the browser so a just-triggered state update (e.g.
+ * showing a loading state) actually gets painted before we run expensive,
+ * synchronous work that would otherwise freeze the UI.
+ */
+export function waitForNextPaint(): Promise<void> {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  });
 }
 
 function guessMimeType(fileName: string): string {
