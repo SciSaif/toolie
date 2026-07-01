@@ -52,7 +52,7 @@
       "description": "Scale dimensions and iteratively compress until a target file size is met.",
       "category": "image",
       "keywords": ["resize", "compress", "kb", "dimensions", "scale"],
-      "status": "coming-soon"
+      "status": "available"
     },
     {
       "id": "image-cropper",

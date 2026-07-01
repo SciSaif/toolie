@@ -21,8 +21,15 @@ export function ToolCard({ tool }: ToolCardProps) {
         <div className="rounded-xl bg-slate-100 p-2.5 text-slate-700">
           <Icon className="h-5 w-5" />
         </div>
-        <span className="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-700">
-          Coming soon
+        <span
+          className={[
+            "rounded-full px-2.5 py-1 text-xs font-medium",
+            tool.status === "available"
+              ? "bg-emerald-50 text-emerald-700"
+              : "bg-amber-50 text-amber-700",
+          ].join(" ")}
+        >
+          {tool.status === "available" ? "Available" : "Coming soon"}
         </span>
       </div>
 
