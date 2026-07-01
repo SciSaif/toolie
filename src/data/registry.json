@@ -63,6 +63,14 @@
       "status": "available"
     },
     {
+      "id": "photo-layout",
+      "name": "Photo Layout Studio",
+      "description": "Drop multiple images onto an A4 or custom paper size, then freely move, resize, and rotate them before exporting a print-ready sheet.",
+      "category": "image",
+      "keywords": ["layout", "print", "a4", "paper", "arrange", "collage", "place", "rotate", "resize", "sheet"],
+      "status": "available"
+    },
+    {
       "id": "image-cropper",
       "name": "Image Cropper & Format Converter",
       "description": "Rotate, crop with aspect ratios, and convert between PNG, JPG, and WEBP.",

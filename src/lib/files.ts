@@ -308,6 +308,45 @@ export async function saveImageBlob(
   return options.suggestedName;
 }
 
+export async function saveGeneratedFile(
+  bytes: Uint8Array,
+  options: {
+    suggestedName: string;
+    mimeType: string;
+    dialogFilterName: string;
+    dialogExtensions: string[];
+  },
+): Promise<string | null> {
+  if (isTauriApp()) {
+    try {
+      const destination = await save({
+        defaultPath: options.suggestedName,
+        filters: [
+          {
+            name: options.dialogFilterName,
+            extensions: options.dialogExtensions,
+          },
+        ],
+      });
+
+      if (!destination) {
+        return null;
+      }
+
+      await writeImageFile(destination, bytes);
+      return destination;
+    } catch (error) {
+      throw new Error(getErrorMessage(error, "Could not save the file."));
+    }
+  }
+
+  downloadBlob(
+    new Blob([bytes], { type: options.mimeType }),
+    options.suggestedName,
+  );
+  return options.suggestedName;
+}
+
 export function buildResizedFileName(fileName: string): string {
   const baseName = fileName.replace(/\.[^.]+$/, "");
   return `${baseName}-resized.jpg`;
