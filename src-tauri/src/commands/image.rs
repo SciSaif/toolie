@@ -161,6 +161,65 @@ fn compress_to_target_kb(
     }
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ConvertPngToJpgRequest {
+    data: String,
+    quality: Option<u8>,
+    max_size_kb: Option<u32>,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ConvertPngToJpgResponse {
+    data: String,
+    width: u32,
+    height: u32,
+    size_bytes: usize,
+    quality: u8,
+}
+
+#[tauri::command]
+pub fn convert_png_to_jpg(
+    request: ConvertPngToJpgRequest,
+) -> Result<ConvertPngToJpgResponse, String> {
+    let input = STANDARD
+        .decode(request.data.trim())
+        .map_err(|error| format!("Invalid image data: {error}"))?;
+
+    let reader = ImageReader::new(Cursor::new(input))
+        .with_guessed_format()
+        .map_err(|error| format!("Could not read image: {error}"))?;
+
+    let format = reader
+        .format()
+        .ok_or_else(|| "Unsupported or unknown image format".to_string())?;
+
+    if format != image::ImageFormat::Png {
+        return Err("Please choose a PNG image.".to_string());
+    }
+
+    let image = reader
+        .decode()
+        .map_err(|error| format!("Could not decode image: {error}"))?;
+
+    let flattened = flatten_on_white(image);
+    let starting_quality = request.quality.unwrap_or(90).clamp(10, 100);
+    let (output, quality) = if let Some(max_kb) = request.max_size_kb {
+        compress_to_target_kb(&flattened, max_kb, starting_quality)?
+    } else {
+        (encode_jpeg(&flattened, starting_quality)?, starting_quality)
+    };
+
+    Ok(ConvertPngToJpgResponse {
+        width: flattened.width(),
+        height: flattened.height(),
+        size_bytes: output.len(),
+        quality,
+        data: STANDARD.encode(output),
+    })
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -189,5 +248,29 @@ mod tests {
         assert!(response.width <= 400);
         assert!(response.height <= 400);
         assert!(response.size_bytes <= 50 * 1024);
+    }
+
+    #[test]
+    fn convert_png_to_jpg_produces_jpeg() {
+        let mut buffer = Vec::new();
+        let image = ImageBuffer::from_fn(200, 150, |x, y| {
+            Rgb([(x % 255) as u8, (y % 255) as u8, ((x + y) % 255) as u8])
+        });
+
+        image
+            .write_to(&mut Cursor::new(&mut buffer), image::ImageFormat::Png)
+            .unwrap();
+
+        let response = convert_png_to_jpg(ConvertPngToJpgRequest {
+            data: STANDARD.encode(buffer),
+            quality: Some(85),
+            max_size_kb: None,
+        })
+        .expect("conversion should succeed");
+
+        assert_eq!(response.width, 200);
+        assert_eq!(response.height, 150);
+        assert!(response.size_bytes > 0);
+        assert_eq!(response.quality, 85);
     }
 }

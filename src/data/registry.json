@@ -55,6 +55,14 @@
       "status": "available"
     },
     {
+      "id": "png-to-jpg",
+      "name": "PNG to JPG",
+      "description": "Convert PNG images to JPG with adjustable quality. Transparency is flattened onto a white background.",
+      "category": "image",
+      "keywords": ["png", "jpg", "jpeg", "convert", "format", "transparency"],
+      "status": "available"
+    },
+    {
       "id": "image-cropper",
       "name": "Image Cropper & Format Converter",
       "description": "Rotate, crop with aspect ratios, and convert between PNG, JPG, and WEBP.",

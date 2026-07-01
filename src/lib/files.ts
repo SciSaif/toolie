@@ -312,3 +312,45 @@ export function buildResizedFileName(fileName: string): string {
   const baseName = fileName.replace(/\.[^.]+$/, "");
   return `${baseName}-resized.jpg`;
 }
+
+export function isPngFileName(name: string): boolean {
+  return /\.png$/i.test(name);
+}
+
+export function isPngFile(file: File): boolean {
+  return file.type === "image/png" || isPngFileName(file.name);
+}
+
+export async function pickPngPath(): Promise<string | null> {
+  const selected = await open({
+    multiple: false,
+    filters: [{ name: "PNG Images", extensions: ["png"] }],
+  });
+
+  if (!selected || Array.isArray(selected)) {
+    return null;
+  }
+
+  return selected;
+}
+
+export async function loadPngFromPath(path: string): Promise<LoadedImage> {
+  if (!isPngFileName(path)) {
+    throw new Error("Please choose a PNG image.");
+  }
+
+  return loadImageFromPath(path);
+}
+
+export async function loadPngFromFile(file: File): Promise<LoadedImage> {
+  if (!isPngFile(file)) {
+    throw new Error("Please choose a PNG image.");
+  }
+
+  return loadImageFromFile(file);
+}
+
+export function buildJpgFileName(fileName: string): string {
+  const baseName = fileName.replace(/\.[^.]+$/, "");
+  return `${baseName}.jpg`;
+}

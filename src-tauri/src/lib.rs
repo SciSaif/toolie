@@ -8,6 +8,7 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             commands::image::resize_image,
+            commands::image::convert_png_to_jpg,
             commands::file::write_image_file,
             commands::file::remove_image_file,
         ])
