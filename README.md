@@ -24,6 +24,24 @@ The app is not code-signed yet. Windows may show *"Windows protected your PC"*. 
 
 The app is safe — your friend can also verify the source on GitHub.
 
+### macOS "is damaged and can't be opened" warning
+
+The app is not notarized with Apple (that requires a paid $99/year Developer account), so macOS quarantines the downloaded `.dmg` and shows this scary message. **The app isn't actually broken or corrupted.**
+
+Fix it in one step:
+
+1. Drag **Toolie** into **Applications** (if you haven't already).
+2. Open **Terminal** (Cmd+Space → type `Terminal`).
+3. Run:
+
+   ```bash
+   xattr -cr /Applications/Toolie.app
+   ```
+
+4. Open Toolie normally from Applications.
+
+This just clears the "downloaded from the internet" flag — it doesn't touch any app code.
+
 ## Features (v0.1)
 
 | Tool | Status |
