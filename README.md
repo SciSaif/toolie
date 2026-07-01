@@ -80,11 +80,11 @@ Replace `YOUR_USERNAME/toolie` with your actual repo path.
 
 ### Publish a release for your friend
 
-Pushing code alone does **not** give your friend a downloadable app. You need a **GitHub Release** with built installers.
+Pushing code to `main` does **not** start GitHub Actions and does **not** give your friend a downloadable app. You need to either push a version tag or run the workflow manually.
 
 **Option A — Automatic (recommended):**
 
-This repo includes a GitHub Actions workflow (`.github/workflows/release.yml`) that builds Windows and macOS installers when you push a version tag:
+This repo includes a GitHub Actions workflow (`.github/workflows/release.yml`) that builds Windows and macOS installers. It runs when you push a version tag like `v0.1.0` (not on every `main` push):
 
 ```bash
 git tag v0.1.0
