@@ -1,6 +1,6 @@
-# FormCraft
+# Toolie
 
-A fast, local-first desktop app for cyber cafe and stationery shop workflows — resize images, convert formats, lay out print sheets, and more. Built with **Tauri + Rust + React**.
+A fast, local-first desktop utility app — image tools, converters, form presets, dev utilities, and more. Built with **Tauri + Rust + React**.
 
 All processing happens on your machine. No uploads, no internet required.
 
@@ -10,10 +10,10 @@ All processing happens on your machine. No uploads, no internet required.
 
 1. Open the [Releases](../../releases) page on GitHub.
 2. Download the latest release:
-   - **Windows:** `FormCraft_*_x64-setup.exe` (or the `.msi` installer)
+   - **Windows:** `Toolie_*_x64-setup.exe` (or the `.msi` installer)
    - **macOS (Apple Silicon):** file ending in `aarch64.dmg`
    - **macOS (Intel):** file ending in `x64.dmg`
-3. Run the installer and open **FormCraft** from the Start menu (Windows) or Applications folder (macOS).
+3. Run the installer and open **Toolie** from the Start menu (Windows) or Applications folder (macOS).
 
 ### Windows SmartScreen warning
 
@@ -33,6 +33,7 @@ The app is safe — your friend can also verify the source on GitHub.
 | Photo Layout Studio | Available |
 | Form presets (passport, signature, ID) | Coming soon |
 | PDF tools | Coming soon |
+| Developer tools & converters | Coming soon |
 
 Press **Ctrl+K** (Windows) or **Cmd+K** (macOS) to open the command palette and jump to any tool.
 
@@ -71,11 +72,11 @@ If this repo is not on GitHub yet:
 # 1. Create a new empty repo on github.com (no README — you already have one)
 
 # 2. Link and push
-git remote add origin https://github.com/YOUR_USERNAME/formcraft.git
+git remote add origin https://github.com/YOUR_USERNAME/toolie.git
 git push -u origin main
 ```
 
-Replace `YOUR_USERNAME/formcraft` with your actual repo path.
+Replace `YOUR_USERNAME/toolie` with your actual repo path.
 
 ### Publish a release for your friend
 

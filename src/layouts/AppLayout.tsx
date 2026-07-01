@@ -30,7 +30,7 @@ export function AppLayout() {
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center justify-between gap-4 border-b border-slate-200 bg-white px-6 py-4">
           <div>
-            <h1 className="text-lg font-semibold text-slate-900">FormCraft</h1>
+            <h1 className="text-lg font-semibold text-slate-900">Toolie</h1>
             <p className="text-sm text-slate-500">
               Browse, search, and open your tools
             </p>

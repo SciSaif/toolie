@@ -40,15 +40,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: v__VERSION__
-          releaseName: FormCraft v__VERSION__
+          releaseName: Toolie v__VERSION__
           releaseBody: |
             ## Windows
-            Download **FormCraft_*_x64-setup.exe** (or the `.msi` installer), run it, and follow the prompts.
+            Download **Toolie_*_x64-setup.exe** (or the `.msi` installer), run it, and follow the prompts.
 
             If Windows SmartScreen warns about an unknown publisher, click **More info** → **Run anyway**.
 
             ## macOS
-            Download the `.dmg` for your Mac (Apple Silicon or Intel), open it, and drag FormCraft to Applications.
+            Download the `.dmg` for your Mac (Apple Silicon or Intel), open it, and drag Toolie to Applications.
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}

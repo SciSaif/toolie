@@ -1,6 +1,6 @@
 PRODUCT REQUIREMENTS DOCUMENT (PRD)
 
-Project Name:       FormCraft (Working Title)
+Project Name:       Toolie
 Target Market:      Cyber Cafe & Stationery Shop Owners (Initial Niche) -> General Multi-Tool Platform (Long-term)
 Architecture:       Local-First Desktop App (Tauri + Rust + Frontend Framework)
 Document Version:   1.1
@@ -9,7 +9,7 @@ Date:               July 2026
 ================================================================================
 1. EXECUTIVE SUMMARY & VALUE PROPOSITION
 ================================================================================
-FormCraft is a hyper-fast, modular, local-first desktop application designed 
+Toolie is a hyper-fast, modular, local-first desktop application designed 
 initially for cyber cafe and stationery shop operators who assist customers 
 with online form submissions (e.g., government jobs, college admissions, portals 
 like SSC, UPSC, Aadhaar, Passport).
